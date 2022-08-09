@@ -22,6 +22,7 @@ public class CreditCardFormTestSelenium {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:9999/");
     }
 
     @AfterEach
@@ -32,19 +33,11 @@ public class CreditCardFormTestSelenium {
 
     @Test
     void shouldSuccessfullySubmitTheApplication() {
-        driver.get("http://localhost:9999/");
-//        Thread.sleep(10000); Задержка в мс
-//        List<WebElement> inputs = driver.findElements(By.tagName("input")); Поиск по селекторам не стабилет т.к. могуд добавляться новые элементы и тест упадет
-//        inputs.get(0).sendKeys("Антонов Антон");
-//        inputs.get(1).sendKeys("+79998887766");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Антонов Антон");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79998887766");
-//        driver.findElement(By.className("checkbox__box")).click(); поиск элементов по имени класса
-//        driver.findElement(By.className("button__text")).click();
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click(); // поиск по селектору css
         driver.findElement(By.className("button__text")).click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-//        String actual = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText().trim(); // поиск по тексту не надежно (текст может меняться и тест упадет)
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
         Assertions.assertEquals(expected, actual);
     }
