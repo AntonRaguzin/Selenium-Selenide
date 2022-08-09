@@ -31,7 +31,7 @@ public class CreditCardFormTestSelenium {
     }
 
     @Test
-    void shouldSuccessfullySubmitTheApplication() throws InterruptedException {
+    void shouldSuccessfullySubmitTheApplication() {
         driver.get("http://localhost:9999/");
 //        Thread.sleep(10000); Задержка в мс
 //        List<WebElement> inputs = driver.findElements(By.tagName("input")); Поиск по селекторам не стабилет т.к. могуд добавляться новые элементы и тест упадет
