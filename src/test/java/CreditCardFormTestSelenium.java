@@ -60,13 +60,13 @@ public class CreditCardFormTestSelenium {
         Assertions.assertEquals(expected, actual);
     }
 
-//    @Test
-//    void shouldNotBeSentWithoutCheckbox() {
-//        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Антонов Антон");
-//        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79998887766");
-//        driver.findElement(By.className("button__text")).click();
-//        String expected = driver.findElement(By.className("checkbox__text")).getCssValue(".input_invalid");
-//        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-//        Assertions.assertEquals(expected, actual);
-//    }
+    @Test
+    void shouldNotBeSentWithoutCheckbox() {
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Антонов Антон");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79998887766");
+        driver.findElement(By.className("button__text")).click();
+        String expected = "rgba(255, 92, 92, 1)";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=agreement]")).getCssValue("color");
+        Assertions.assertEquals(expected, actual);
+    }
 }
